@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 
-Route::get('/', [MainController::class, 'show'])->name('home');
+Route::get('/', [MainController::class, 'showIndex'])->name('home');
 
 
-Route::get('/first', [MainController::class, 'first'])->name('first');
+Route::get('/array', [MainController::class, 'showArray'])->name('array');
