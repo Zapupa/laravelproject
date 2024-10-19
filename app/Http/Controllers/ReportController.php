@@ -29,4 +29,20 @@ class ReportController extends Controller
         $report->create($data);
         return redirect()->back();
     }
+
+    public function show(Report $report)
+    {
+        return view('report.show', compact('report'));
+    }
+
+    public function update(Request $request, Report $report)
+    {
+        $data = $request->validate([
+            'number' => 'string',
+            'description' => 'required|string|max:255',
+        ]);
+
+        $report->update($data);
+        return redirect()->back();
+    }
 }

@@ -3,16 +3,18 @@
 <div class='container md:mx-auto border m-4'>
     <h2>Список репортов</h2>
     @foreach($reports as $report)
-        <div class='flex justify-between'>
-            <p class="border w-full">{{ $report->number }}</p>
-            <p class="border w-full">{{ $report->description }}</p>
-            <p class="border w-full">{{ $report->created_at }}</p>
-        </div>
-        <form action="{{route('reports.destroy', $report->id)}}" method="post">
-            @method('delete')
-            @csrf
-            <input type="submit" value="Удалить" />
-        </form>
+        <a href="{{route('report.show', $report->id)}}">
+            <div class='flex justify-between'>
+                <p class=" border w-full">{{ $report->number }}</p>
+                <p class="border w-full">{{ $report->description }}</p>
+                <p class="border w-full">{{ $report->created_at }}</p>
+            </div>
+            <form action="{{route('reports.destroy', $report->id)}}" method="post">
+                @method('delete')
+                @csrf
+                <input type="submit" value="Удалить" />
+            </form>
+        </a>
     @endforeach
 
     <form action="{{route('reports.store')}}" method="POST">
