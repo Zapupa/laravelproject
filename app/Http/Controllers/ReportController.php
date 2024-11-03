@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Reports as Report; // f[f[f[]]]
+use App\Models\Report;
 
 class ReportController extends Controller
 {

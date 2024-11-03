@@ -12,6 +12,6 @@ class Status extends Model
 
     public function reports(): HasMany
     {
-        return $this->hasMany(Reports::class);
+        return $this->hasMany(Report::class);
     }
 }
