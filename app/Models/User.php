@@ -19,6 +19,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'middlename',
+        'surname',
+        'tel',
+        'login',
         'email',
         'password',
     ];
@@ -56,5 +60,9 @@ class User extends Authenticatable
     public function isAdmin()
     {
         return $this->role === self::ADMIN_ROLE;
+    }
+
+    public function fullName(){
+        return $this->name.' '.$this->middlename.' '.$this->surname; 
     }
 }
