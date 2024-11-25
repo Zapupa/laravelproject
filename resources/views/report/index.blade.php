@@ -8,41 +8,25 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class='flex justify-between'>
+                    <p class=" border w-full">Время создания</p>
+                    <p class="border w-full">Номер авто</p>
+                    <p class="border w-full">Описание</p>
+                    <p class="border w-full">Статус</p>
+                </div>
                 @foreach($reports as $report)
-                    <a href="{{route('report.show', $report->id)}}">
-                        <div class='flex justify-between'>
-                            <p class=" border w-full">{{ $report->number }}</p>
-                            <p class="border w-full">{{ $report->description }}</p>
-                            <p class="border w-full">{{ $report->created_at }}</p>
-                        </div>
-                        <form action="{{route('reports.destroy', $report->id)}}" method="post">
-                            @method('delete')
-                            @csrf
-                            <input type="submit" value="Удалить" />
-                        </form>
-                    </a>
-                @endforeach
 
-                <form action="{{route('reports.store')}}" method="POST">
-                    @csrf
-                    <div class="grid gap-6 mb-6 md:grid-cols-1">
-                        <div>
-                            <label for="number" class="block mb-2 text-sm font-medium text-gray-900">Number</label>
-                            <input type="text" name="number" id="number"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                placeholder="нумбер" required />
-                        </div>
-                        <div>
-                            <label for="description"
-                                class="block mb-2 text-sm font-medium text-gray-900">Description</label>
-                            <textarea type="text" name="description" id="description"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                placeholder="дискриптион" required></textarea>
-                        </div>
+                    <div class='flex justify-between'>
+                        <p class="border w-full">{{\Carbon\Carbon::parse($report->created_at)->translatedFormat('j F Y')}}
+                        </p>
+                        <p class=" border w-full">{{ $report->number }}</p>
+                        <p class="border w-full">{{ $report->description }}</p>
+                        <p class="border w-full">{{ $report->status->name }}</p>
                     </div>
-                    <button type="submit"
-                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Create</button>
-                </form>
+                @endforeach
+                <x-nav-link :href="route('reports.create')" type="submit"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Создать
+                    новый</x-nav-link>
             </div>
         </div>
     </div>

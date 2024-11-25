@@ -21,15 +21,23 @@ class ReportController extends Controller
         return redirect()->back();
     }
 
-    public function store(Request $request, Report $report)
+    public function create(){
+        return view("report.create");
+    }
+
+    public function store(Request $request)
     {
         $data = $request->validate([
             'number' => 'string',
             'description' => 'required|string|max:255',
         ]);
-
-        $report->create($data);
-        return redirect()->back();
+        Report::create([
+            'number'=> $data['number'],
+            'description'=> $data['description'],
+            'status_id' => 1,
+            'user_id' => Auth::user()->id,
+        ]);
+        return redirect()->route('dashboard');
     }
 
     public function show(Report $report)
@@ -37,14 +45,15 @@ class ReportController extends Controller
         return view('report.show', compact('report'));
     }
 
-    public function update(Request $request, Report $report)
+    public function update(Request $request)
     {
         $data = $request->validate([
-            'number' => 'string',
-            'description' => 'required|string|max:255',
+            'status_id' => ['required'],
+            'id' => ['required'],
         ]);
-
-        $report->update($data);
+        Report::where('id', $request->id)->update([
+            'status_id'=> $request->status_id,
+        ]);
         return redirect()->back();
     }
 }

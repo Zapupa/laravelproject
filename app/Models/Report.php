@@ -12,11 +12,11 @@ class Report extends Model
     use HasFactory, SoftDeletes;
     protected $guarded = [];
 
-    public function users(): BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
-    public function statuses(): BelongsTo
+    public function status(): BelongsTo
     {
         return $this->belongsTo(Status::class);
     }
