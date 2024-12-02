@@ -18,7 +18,7 @@
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
             <div>
                 <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                    <div class="text-blue-600 font-bold text-5xl">НАРУШЕНИЙ<span class="text-red-600">.НЕТ</span></div>
                 </a>
             </div>
 
