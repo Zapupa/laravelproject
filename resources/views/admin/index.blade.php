@@ -7,18 +7,18 @@
   <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
       <div class='flex justify-between bg-blue-700 text-white font-bold text-xl'>
-        <p class="p-5  w-full">Дата заявления</p>
-        <p class="p-5  w-full">Номер </p>
-        <p class="p-5 w-full">Имя пользователя</p>
-        <p class="p-5 w-full">Текст заявления</p>
-        <p class="p-5 w-full">Статус</p>
+        <p class="p-5  w-full max-[450px]:p-2">Дата заявления</p>
+        <p class="p-5  w-full max-[450px]:p-2 max-[800px]:hidden">Номер </p>
+        <p class="p-5 w-full max-[450px]:p-2">Имя пользователя</p>
+        <p class="p-5 w-full max-[450px]:p-2 max-[800px]:hidden">Текст заявления</p>
+        <p class="p-5 w-full max-[450px]:p-2">Статус</p>
       </div>
       @foreach($reports as $report)
       <div class='flex justify-between'>
       <p class=" w-full p-5">{{\Carbon\Carbon::parse($report->created_at)->translatedFormat('j F Y')}}</p>
-      <p class="  w-full p-5">{{ $report->number }}</p>
+      <p class="  w-full p-5 max-[800px]:hidden">{{ $report->number }}</p>
       <p class=" w-full p-5">{{ $report->user->fullName() }}</p>
-      <p class=" w-full max-w-xs p-5">{{ $report->description }}</p>
+      <p class=" w-full max-w-xs p-5 max-[800px]:hidden">{{ $report->description }}</p>
       @if($report->status_id == 1)
       <form class=" w-full p-5" id="form-update-{{$report->id}}" action="{{route('reports.update')}}" method="POST">
       @csrf

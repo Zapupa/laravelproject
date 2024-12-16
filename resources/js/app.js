@@ -1,5 +1,9 @@
 import "./bootstrap";
 import "flowbite";
+import "./main"
+import.meta.glob([
+    '../images/**',
+ ]);
 
 import Alpine from "alpinejs";
 
